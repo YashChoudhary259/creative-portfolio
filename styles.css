@@ -1,0 +1,467 @@
+/* ==========================================================================
+   1. RESET
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   2. FONTS & VARIABLES
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #0f0f0f;
+  --bg-alt: #1a1a1a;
+  --text: #f5f5f5;
+  --text-muted: #aaaaaa;
+  --accent: #7ab6f9;
+  --accent-hover: #66a9ed;
+  --border: #2a2a2a;
+}
+
+/* ==========================================================================
+   3. BASE
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+/* ==========================================================================
+   4. HEADER / NAV
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  background-color: #0f172a;
+  padding: 0.6rem 1.5rem;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.site-nav ul {
+  display: flex;
+  gap: 2rem;
+}
+
+.site-nav a {
+  color: #ccc;
+  font-weight: 500;
+  position: relative;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  color: #fff;
+}
+
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus::after {
+  width: 100%;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  transition: 0.3s ease;
+}
+
+/* ==========================================================================
+   5. HERO
+   ========================================================================== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 8rem 2rem;
+  text-align: center;
+  background: linear-gradient(to bottom, #0f172a 0%, #1e293b 100%);
+  color: #f1f5f9;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-inner {
+  max-width: 700px;
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #cbd5e1;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   6. BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #0f172a;
+}
+
+.btn.primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.btn.secondary:hover {
+  background: var(--accent);
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   7. SECTIONS (shared)
+   ========================================================================== */
+section {
+  padding: 5rem 2rem;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+
+/* Scroll-reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   8. ABOUT
+   ========================================================================== */
+.about {
+  background-color: #121212;
+  text-align: center;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: #cbd5e1;
+}
+
+.about-content p {
+  margin-bottom: 1.2rem;
+}
+
+/* ==========================================================================
+   9. PROJECTS / WORK (shared card layout)
+   ========================================================================== */
+.projects,
+.work {
+  background-color: var(--bg);
+  text-align: center;
+}
+
+.projects-content,
+.work-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card img:hover {
+  transform: scale(1.02);
+}
+
+.project-card h3 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.project-card p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.project-card a {
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   10. TECH STACK
+   ========================================================================== */
+.tech {
+  background-color: var(--bg);
+  text-align: center;
+}
+
+.tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.tech-icons img {
+  width: 60px;
+  height: 60px;
+  filter: grayscale(100%);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.tech-icons img:hover {
+  transform: scale(1.15);
+  filter: grayscale(0%);
+}
+
+/* ==========================================================================
+   11. CONTACT
+   ========================================================================== */
+.contact {
+  background-color: #0a0a0a;
+  text-align: center;
+}
+
+.contact p {
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   12. FOOTER
+   ========================================================================== */
+.site-footer {
+  padding: 2.5rem 1rem;
+  background-color: var(--bg);
+  color: #bbbbbb;
+  text-align: center;
+  border-top: 1px solid #222;
+  font-size: 0.95rem;
+}
+
+.footer-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  margin-top: 1rem;
+}
+
+.footer-links a {
+  color: var(--accent);
+  margin: 0 0.8rem;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   13. ANIMATIONS
+   ========================================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spinner {
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-top: 5px solid var(--accent);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   14. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 2rem;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--bg-alt);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+  }
+
+  .site-nav.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+}
