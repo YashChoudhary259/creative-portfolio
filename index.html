@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yash Choudhary — Front-End Developer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
@@ -22,6 +23,13 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme" type="button">
+        <!-- Sun icon (visible in dark theme) -->
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <!-- Moon icon (visible in light theme) -->
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
 
       <button class="hamburger" id="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav">
         <span></span>
@@ -86,35 +94,38 @@
         <h2>Selected work</h2>
 
         <div class="project-grid">
-          <div class="project-card">
-            <img src="images/codestorm.png" alt="CodeStorm Quiz App" />
+          <div class="project-card" tabindex="0">
+            <img src="images/codestorm.png" alt="QuizStorm Quiz App" loading="lazy" />
             <div class="project-info">
-              <h3>CodeStorm Quiz App</h3>
+              <h3>QuizStorm Quiz App</h3>
               <p>A quiz app built for speed — animated transitions, live scoring, and zero lag between question and answer.</p>
               <div class="project-tags">
                 <span class="tag-chip">HTML</span>
                 <span class="tag-chip">CSS</span>
                 <span class="tag-chip">JavaScript</span>
               </div>
-              <a href="#" target="_blank">View project →</a>
+              <a href="https://quizstorm-ten.vercel.app/" target="_blank" rel="noopener noreferrer">View project →</a>
             </div>
           </div>
 
-          <div class="project-card">
-            <img src="images/pixel-bites.png" alt="Pixel Bites Screenshot" />
+          <div class="project-card" tabindex="0">
+            <img src="images/scraper-dashboard.png" alt="Live Scraper Dashboard Screenshot" loading="lazy" />
             <div class="project-info">
-              <h3>Pixel Bites</h3>
-              <p>A food ordering concept exploring layout rhythm and semantic structure over flashy effects.</p>
+              <h3>Live Scraper Dashboard</h3>
+              <p>A real-time Hacker News scraping and analytics dashboard tracking stories, metrics, and engagement trends.</p>
               <div class="project-tags">
-                <span class="tag-chip">HTML</span>
-                <span class="tag-chip">CSS</span>
+                <span class="tag-chip">Python</span>
+                <span class="tag-chip">Flask</span>
+                <span class="tag-chip">BeautifulSoup</span>
+                <span class="tag-chip">SQLite</span>
+                <span class="tag-chip">Chart.js</span>
               </div>
-              <a href="#" target="_blank">View project →</a>
+              <a href="https://live-scraper-dashboard.onrender.com/" target="_blank" rel="noopener noreferrer">View project →</a>
             </div>
           </div>
 
-          <div class="project-card">
-            <img src="images/campus-ride.png" alt="Campus Ride Bus Management App Screenshot" />
+          <div class="project-card" tabindex="0">
+            <img src="images/campus-ride.png" alt="Campus Ride Bus Management App Screenshot" loading="lazy" />
             <div class="project-info">
               <h3>Campus Ride</h3>
               <p>A transport logistics ecosystem connecting students, drivers, and admins — live ETAs, SOS alerts, route optimization, and a management command center in one app.</p>
@@ -123,7 +134,7 @@
                 <span class="tag-chip">Vite</span>
                 <span class="tag-chip">JavaScript</span>
               </div>
-              <a href="https://github.com/YashChoudhary259/Campus-Ride" target="_blank">View project →</a>
+              <a href="https://bus-management-sooty.vercel.app/Signup" target="_blank" rel="noopener noreferrer">View project →</a>
             </div>
           </div>
         </div>
@@ -184,10 +195,35 @@
         <h2>Let's build something worth inspecting.</h2>
         <p>Open to front-end roles, collabs, or just talking shop about easing curves. Drop a message — I reply fast, promise.</p>
 
-        <div class="contact-buttons">
-          <a href="mailto:yashch26259@gmail.com" class="btn primary">Say hello</a>
-          <a href="https://github.com/YashChoudhary259" class="btn secondary" target="_blank">GitHub</a>
-          <a href="https://www.linkedin.com/in/yash-choudhary-655a20374" class="btn secondary" target="_blank">LinkedIn</a>
+        <form class="contact-form" id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" name="name" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input type="email" id="contact-email" name="email" placeholder="email@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-subject">Subject</label>
+            <input type="text" id="contact-subject" name="subject" placeholder="What's this about?" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="5" placeholder="Your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn primary form-submit-btn">Send Message</button>
+          <div class="form-status" id="form-status"></div>
+        </form>
+
+        <div class="contact-socials">
+          <p class="social-lead">Or connect with me on:</p>
+          <div class="contact-buttons">
+            <a href="https://github.com/YashChoudhary259" class="btn secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/yash-choudhary-655a20374" class="btn secondary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
         </div>
       </div>
     </section>
@@ -198,8 +234,8 @@
       <p>© 2025 Yash Choudhary — built with HTML, CSS, JS, and too much coffee.</p>
       <div class="footer-links">
         <a href="mailto:yashch26259@gmail.com?subject=Hello%20Yash&body=Let's%20connect!" target="_blank">Email</a>
-        <a href="https://github.com/YashChoudhary259" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/yash-choudhary-655a20374" target="_blank">LinkedIn</a>
+        <a href="https://github.com/YashChoudhary259" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/yash-choudhary-655a20374" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </div>
   </footer>

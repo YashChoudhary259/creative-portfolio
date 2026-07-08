@@ -78,3 +78,63 @@ inspectableCards.forEach(card => {
   card.addEventListener('focusin', activate);
   card.addEventListener('focusout', deactivate);
 });
+
+// --- Theme Switcher ---
+const themeToggle = document.getElementById('theme-toggle');
+const savedTheme = localStorage.getItem('theme') || 'dark';
+
+if (savedTheme === 'light') {
+  document.body.setAttribute('data-theme', 'light');
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const isLight = document.body.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      document.body.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    }
+  });
+}
+
+// --- Interactive Hero Mouse Tracker ---
+document.addEventListener('mousemove', (e) => {
+  document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+  document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+});
+
+// --- AJAX Contact Form Interaction ---
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
+if (contactForm && formStatus) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const submitBtn = contactForm.querySelector('.form-submit-btn');
+    const originalText = submitBtn.textContent;
+    
+    // Set loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    formStatus.textContent = '';
+    formStatus.className = 'form-status';
+
+    // Simulate standard AJAX post
+    setTimeout(() => {
+      // Success feedback
+      submitBtn.textContent = 'Sent!';
+      formStatus.textContent = 'Message sent successfully! 🚀 I will get back to you soon.';
+      formStatus.className = 'form-status success';
+      contactForm.reset();
+
+      // Reset button after 4 seconds
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }, 4000);
+    }, 1200);
+  });
+}

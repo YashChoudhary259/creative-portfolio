@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4fd1c5" />
+      <stop offset="100%" stop-color="#ff7a59" />
+    </linearGradient>
+  </defs>
+  <!-- Modern geometric Y logo inspired by code brackets -->
+  <path d="M 25,25 L 50,50 L 50,80 M 75,25 L 50,50" fill="none" stroke="url(#g)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Accent dot representing a cursor / command line prompt -->
+  <circle cx="75" cy="75" r="9" fill="#ff7a59" />
+</svg>

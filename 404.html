@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>404 — Page Not Found</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
   <style>
     .not-found {
@@ -14,34 +15,36 @@
       height: 100vh;
       text-align: center;
       padding: 2rem;
-      background: #0f0f0f;
-      color: #ccc;
+      background: var(--ink);
+      color: var(--text);
     }
 
     .not-found h1 {
       font-size: 5rem;
       margin-bottom: 1rem;
-      color: #7ab6f9;
+      color: var(--coral);
     }
 
     .not-found p {
       font-size: 1.2rem;
+      color: var(--muted);
       margin-bottom: 2rem;
     }
 
     .not-found a {
       display: inline-block;
-      padding: 0.7rem 1.4rem;
-      background-color: #7ab6f9;
-      color: #0f0f0f;
+      padding: 0.8rem 1.6rem;
+      background-color: var(--teal);
+      color: #06231f;
       border-radius: 8px;
       font-weight: 600;
       text-decoration: none;
-      transition: background-color 0.3s ease;
+      transition: transform 0.25s ease, background-color 0.25s ease;
     }
 
     .not-found a:hover {
-      background-color: #539de0;
+      transform: translateY(-2px);
+      background-color: #6be0d4;
     }
   </style>
 </head>
