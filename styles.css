@@ -855,3 +855,151 @@ body[data-theme="light"] .form-group textarea:focus {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* --- Custom Cursor System --- */
+@media (hover: hover) and (pointer: fine) {
+  html, body {
+    cursor: none;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"] {
+    cursor: auto;
+  }
+
+  .cursor-ring-wrap,
+  .cursor-dot-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    mix-blend-mode: difference; /* Applied directly to wrappers to force pixel blending in all modes and bypass layer isolation bugs */
+  }
+
+  body.cursor-visible .cursor-ring-wrap,
+  body.cursor-visible .cursor-dot-wrap {
+    opacity: 1;
+  }
+
+  body.cursor-hover-input .cursor-ring-wrap,
+  body.cursor-hover-input .cursor-dot-wrap {
+    opacity: 0 !important;
+  }
+
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: 
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+      opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.3s ease;
+  }
+
+  .cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid #ffffff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: 
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      border-radius 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* Link Hover State */
+  body.cursor-hover-link .cursor-ring {
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+  body.cursor-hover-link .cursor-dot {
+    opacity: 0;
+  }
+
+  /* Project Card Hover State (Pill morph) */
+  body.cursor-hover-project .cursor-ring {
+    width: 90px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #ffffff;
+  }
+  body.cursor-hover-project .cursor-dot {
+    opacity: 0;
+  }
+  body.cursor-hover-project .cursor-text {
+    opacity: 1;
+  }
+
+  /* Text Hover State (Reading) */
+  body.cursor-hover-text .cursor-ring {
+    width: 24px;
+    height: 24px;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Active Click State */
+  body.cursor-clicked .cursor-dot {
+    transform: translate(-50%, -50%) scale(0.7);
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  body.cursor-clicked .cursor-ring {
+    transform: translate(-50%, -50%) scale(0.85);
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Label Text Inside Pill */
+  .cursor-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0;
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* Light Theme Specific Styles */
+  body[data-theme="light"] .cursor-ring-wrap,
+  body[data-theme="light"] .cursor-dot-wrap {
+    mix-blend-mode: normal !important;
+  }
+
+  body[data-theme="light"] .cursor-dot {
+    background-color: #0b0e14 !important;
+    mix-blend-mode: normal !important;
+  }
+
+  body[data-theme="light"] .cursor-ring {
+    border-color: #0b0e14 !important;
+    mix-blend-mode: normal !important;
+  }
+
+  body[data-theme="light"] .cursor-text {
+    color: #ffffff !important; /* White text inside the dark pill */
+  }
+
+  body[data-theme="light"].cursor-hover-project .cursor-ring {
+    background-color: #0b0e14 !important; /* Solid dark pill background */
+  }
+
+  body[data-theme="light"].cursor-hover-text .cursor-ring {
+    border-color: rgba(11, 14, 20, 0.5) !important; /* Semi-transparent dark outline */
+  }
+}
